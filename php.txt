@@ -1,0 +1,443 @@
+1.Write a PHP script to find odd or even number from given number.
+<html>
+<body>
+<?php
+function checkOddEven($number)
+{
+if ($number % 2 == 0)
+ {
+ echo "$number is even.";
+ } 
+ else 
+ {
+ echo "$number is odd.";
+ }
+}
+$number =56;
+checkOddEven($number);
+?>
+</html>
+</body>
+2.Write a PHP script to find maximum of three number.
+<?php
+function findMax($num1, $num2, $num3) 
+{
+ $max = $num1; 
+ if ($num2 > $max)
+ { 
+ $max = $num2; 
+ }
+ if ($num3 > $max)
+ {
+ $max = $num3; 
+ }
+ return $max;
+}
+$num1 = 15;
+$num2 = 27;
+$num3 = 10;
+$maxNumber = findMax($num1, $num2, $num3);
+echo "The maximum number among $num1, $num2, and $num3 
+is: $maxNumber";
+?>
+3.Write a PHP script to swap two number.
+<?php
+function swapNumbers(&$num1, &$num2)
+{
+ $temp = $num1; 
+ $num1 = $num2; 
+ $num2 = $temp;
+}
+$a = 5;
+$b = 10;
+echo "Before swapping: a = $a, b = $b <br>";
+swapNumbers($a, $b);
+echo "After swapping: a = $a, b = $b";
+?>
+4.Write a PHP script to find the factorial of a number.
+<?php
+function factorial($n)
+{
+ if ($n === 0 || $n === 1) 
+ {
+ return 1;
+ } 
+ else
+ {
+ $result = 1;
+ for ($i = 2; $i <= $n; $i++)
+ {
+ $result *= $i;
+ }
+ return $result;
+ }
+}
+ $number = 5; 
+$factorial = factorial($number);
+echo "Factorial of $number is: $factorial";
+?>
+5.Write a PHP script to check whether given number is palindrome or not.
+<?php
+function isPalindrome($number)
+{
+ $numberStr = (string) $number;
+ $length = strlen($numberStr);
+ 
+ for ($i = 0; $i < $length / 2; $i++)
+ {
+ 
+ if ($numberStr[$i] !== $numberStr[$length - $i - 1])
+ {
+ return false; 
+ }
+ }
+ 
+ return true; 
+}
+$number = 12321; 
+if (isPalindrome($number)) 
+{
+ echo "$number is a palindrome.";
+} 
+else
+{
+ echo "$number is not a palindrome.";
+}
+?>
+6.Write a PHP script to reverse a given number and calculate its sum.
+<?php
+function reverseAndSum($number) {
+ 
+ $reversedNumber = strrev((string)$number);
+ $sum = 0;
+ for ($i = 0; $i < strlen($reversedNumber); $i++)
+ {
+ $sum += (int)$reversedNumber[$i];
+ }
+ return ['reversed' => (int)$reversedNumber,
+ 'sum' => $sum];
+$number = 12345;
+$result = reverseAndSum($number);
+echo "Original Number: $number\n";
+echo "Reversed Number: {$result['reversed']}\n";
+echo "Sum of Digits: {$result['sum']}\n";
+?>
+<?php
+7.Write a PHP script to generate a Fibonacci series using Recursive .
+<?php
+function fibonacci($n) 
+{
+ if ($n <= 1) 
+ {
+ return $n;
+ } else 
+ {
+ return (fibonacci($n - 1) +
+ fibonacci($n - 2));
+}
+}
+$count = 10;
+echo "Fibonacci Series using Recursive Function:\n";
+for ($i = 0; $i < $count; $i++)
+{
+ echo fibonacci($i);
+}
+?>
+9.Writr a PHP program to insert new item in array on any position in PHP.
+
+<?php
+function insertIntoArray($array, $newItem, $position)
+{
+ $firstPart = array_slice($array, 0, $position);
+ $secondPart = array_slice($array, $position);
+ $result = array_merge($firstPart, array($newItem), $secondPart);
+ return $result;
+}
+$array = [1, 2, 3, 4, 5];
+$newItem = 10;
+$position = 2;
+$result = insertIntoArray($array, $newItem, $position);
+print_r($result);
+?>
+10.Write a PHP script to implement constructor and destructor.
+<?php
+class Fruit
+{
+ public $name;
+ public $color;
+ function __construct($name, $color) 
+ {
+ $this->name = $name;
+ $this->color = $color;
+ }
+ function __destruct() 
+ {
+ echo "The fruit is {$this->name} and the color is {$this->color}.";
+ }
+} 
+$apple = new Fruit("Apple","red");
+?>
+11.Write a PHP script to implement form handling using get method.
+
+<html>
+<body>
+<form action="pgm11.php" method="GET"> 
+Name: <input type="text" name="name"><br><br> 
+RollNo:<input type="number" name="rollno"><br><br> 
+<input type="submit"> 
+</form>
+</body>
+</html> 
+<?php 
+if((isset($_GET['name']))||(isset($_GET['rollno']))) 
+{ 
+$name=$_GET["name"]; 
+$rollno=$_GET["rollno"]; 
+echo "Hi, My Name is $name & My RollNo is $rollno"; 
+} 
+?>
+12.Write a PHP script to implement form handling using post method.
+<html>
+<body>
+<form action="pgrm12.php" method="POST"> 
+Name: <input type="text" name="name"><br><br> 
+RollNo:<input type="number" name="rollno"><br><br> 
+<input type="submit"> 
+</form>
+</body>
+</html> 
+<?php 
+if((isset($_POST['name']))||(isset($_POST['rollno']))) 
+{ 
+$name=$_POST["name"]; 
+$rollno=$_POST["rollno"]; 
+echo "Hi, My Name is $name & My RollNo is $rollno"; 
+} 
+?>
+13. Write a PHP script that receives form input by the method post to 
+check the number is prime or not.
+<html>
+<body>
+<form method="POST" action="pgrm13.php"> 
+Enter a Number: <input type="text" name="number"><br> 
+<input type="submit" name="submit" value="Check"> 
+</form> 
+</body>
+</html>
+<?php 
+if(isset($_POST['number'])) 
+{ 
+$num=$_POST['number']; 
+function prime($num) 
+{ 
+for($x=2;$x<=$num/2;$x++) 
+{ 
+if($num%$x==0) 
+{ 
+return 0; 
+} 
+} 
+return 1; 
+} 
+$a=prime($num); 
+if($a==0) 
+echo "$num is not a prime number";
+else
+echo "$num is prime number"; 
+} 
+?>
+14. Write a PHP script that receives string as a form input.
+
+<html>
+<form method="POST" action="pgrm14.php"> 
+Enter a String: <input type="text" name="String"><br> 
+<input type="submit" name="submit" value="Submit"> 
+</form>
+</html> 
+<?php 
+if(isset($_POST['String'])) 
+{ 
+$Str=$_POST['String']; 
+echo "Received String is $Str "; }
+?>
+16. Write a PHP script to show the functionality of date and time function.
+<?php 
+// Get current date and time 
+$currentDateTime = date('Y-m-d H:i:s'); 
+// Display current date and time 
+echo "Current Date and Time: $currentDateTime<br>"; 
+// Display current date in a different format 
+$currentDateFormatted = date('l, F j, Y'); 
+echo "Formatted Current Date: $currentDateFormatted<br>"; 
+// Display current time in a different timezone 
+$desiredTimezone = 'America/New_York'; // Example timezone 
+date_default_timezone_set($desiredTimezone); 
+$currentTimeZone = date('Y-m-d H:i:s');
+echo "Current Date and Time in $desiredTimezone TimeZone: 
+$currentTimeZone<br>"; 
+// Calculate a future date 
+$futureDate = date('Y-m-d', strtotime('+1 week')); 
+echo "Future Date (1 week from today): $futureDate<br>"; 
+// Calculate difference between two dates 
+$startDate = date_create('2022-01-01'); 
+$endDate = date_create('2022-12-31'); 
+$dateDiff = date_diff($startDate, $endDate); 
+echo "Difference Between Two Dates: $dateDiff->days Days<br>"; 
+// Get the day of the week for a date 
+$dayOfWeek = date('l', strtotime('2022-06-15')); 
+echo "Day of the week for June 15, 2022: $dayOfWeek"; 
+?>
+17. Write a PHP program to upload a file.
+<html>
+<form action="pgrm17.php" method="POST" enctype="multipart/form-data"> 
+<input type="file" name="fileToUpload"> 
+<input type="submit" value="upload file" name="submit"> 
+</form>
+</html> 
+
+<?php 
+if(isset($_POST['submit'])) 
+{ 
+$target_dir = "BCA result sheet"; 
+$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]); 
+if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"],$target_file)) 
+{ 
+echo "The file ". 
+htmlspecialchars(basename($_FILES["fileToUpload"]["name"])) . " has been 
+uploaded."; 
+} 
+else 
+{ 
+echo "Sorry, there was an error uploading your file."; 
+} 
+} 
+?>
+18. Write a PHP script to implement database creation.
+<?php 
+// Create Connection
+$con = mysqli_connect("localhost","root",""); 
+if(!$con) 
+{ 
+die("Could Not Connect To The Database Server"); 
+} 
+// Create Database 
+$query = "create database Std"; 
+$crdb = mysqli_query($con,$query); 
+if($crdb) 
+{ 
+echo 'Database Created Successfully!'; 
+} 
+else 
+{ 
+echo 'Error creating database: ' . mysqli_error($con); 
+} 
+// Close the connection 
+mysqli_close($con); 
+?>
+19. Write a PHP script to create table.
+<?php 
+
+// Create Connection 
+$con = mysqli_connect("localhost","root","","std"); 
+if(!$con) 
+{ 
+die("Could Not Connect To The Database Server"); 
+} 
+$query = "create table Student(Id INT not null PRIMARY KEY,Name 
+varchar(50),Address 
+varchar(50))"; 
+$crtb = mysqli_query($con,$query); 
+if($crtb) 
+{ 
+echo 'Table Created Successfully!'; 
+} 
+else 
+{ 
+echo 'Error in Creating Table: ' . mysqli_error($con); 
+} 
+// Close the connection 
+mysqli_close($con); 
+?>
+20. Develop a PHP program to design a college admission form using 
+MYSQL database.
+//HTML & PHP Code 
+<html> 
+<head> 
+<title>College Admission Form</title> 
+</head> 
+<body> 
+<h2>College Admission Form</h2> 
+<form method="post" action="std.php"> 
+<label for="first_name">First Name:</label> 
+<input type="text" id="first_name" name="first_name" required><br><br> 
+<label for="last_name">Last Name:</label> 
+<input type="text" id="last_name" name="last_name" required><br><br> 
+<label for="email">Email:</label> 
+<input type="email" id="email" name="email" required><br><br> 
+<label for="phone">Phone:</label> 
+<input type="text" id="phone" name="phone"><br><br> 
+<label for="address">Address:</label><br> 
+<textarea id="address" name="address" rows="4" 
+cols="50"></textarea><br><br> 
+<label for="city">City:</label> 
+<input type="text" id="city" name="city"><br><br> 
+<label for="state">State:</label> 
+<input type="text" id="state" name="state"><br><br> 
+<label for="zip">Zip:</label> 
+<input type="text" id="zip" name="zip"><br><br> 
+<label for="course">Course:</label> 
+<input type="text" id="course" name="course" required><br><br>
+<label for="dob">Date of Birth:</label> 
+<input type="date" id="dob" name="dob" required><br><br> 
+<label for="gender">Gender:</label><br> 
+<input type="radio" id="male" name="gender" value="Male"> 
+<label for="male">Male</label><br> 
+<input type="radio" id="female" name="gender" value="Female"> 
+<label for="female">Female</label><br> 
+<input type="radio" id="other" name="gender" value="Other"> 
+<label for="other">Other</label><br><br> 
+<input type="submit" name="submit" value="Submit"> 
+</form> 
+<?php 
+if (isset($_POST['submit'])) 
+{ 
+// Create Connection 
+$con = mysqli_connect("localhost","root","","college_admission"); 
+if(!$con) 
+{ 
+die("Connection failed: " . $conn->connect_error); 
+} 
+// Retrieve form data 
+$first_name = $_POST['first_name']; 
+$last_name = $_POST['last_name']; 
+$email = $_POST['email']; 
+$phone = $_POST['phone']; 
+$address = $_POST['address']; 
+$city = $_POST['city'];
+$state = $_POST['state']; 
+
+$zip = $_POST['zip']; 
+$course = $_POST['course'];
+$dob = $_POST['dob']; 
+$gender = $_POST['gender']; 
+// Insert data into the database 
+$sql = "INSERT INTO admissions (first_name, last_name, email, phone, 
+address, city, state, zip, 
+course, dob, gender) 
+VALUES ('$first_name', '$last_name', '$email', '$phone', '$address', '$city', 
+'$state', '$zip', '$course', 
+'$dob', '$gender')"; 
+if ($con->query($sql) === TRUE) 
+{ 
+echo "Admission form submitted successfully!"; 
+} 
+else 
+{ 
+echo "Error: " . $sql . "<br>" . $con->error; 
+} 
+// Close the connection 
+$con->close(); 
+} 
+?> 
+</body> 
+</html>
